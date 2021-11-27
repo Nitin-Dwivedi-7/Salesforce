@@ -1,0 +1,74 @@
+<aura:component controller="AccountListControllerClass" >
+   
+    <!-- Attributes -->
+    <aura:attribute name="txt" type="String" default="Name"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doinit}"/>
+    <aura:attribute name="popupdisplay" type="Boolean" default="false"/>
+    <aura:attribute name="Account_list" type="Account[]"/>
+    <aura:attribute name="OppList" type="Opportunity[]"/>
+    <aura:attribute name="ConList" type="Contact[]"/>
+    <aura:attribute name="cols" type="List"/>
+    
+    
+    
+    
+    <!-- Iterating Accounts on the Screen -->
+    <lightning:layout verticalAlign="center" multipleRows="true" class="x-large">
+            <aura:iteration items="{!v.Account_list}" var="account">
+                <lightning:layoutItem flexibility="auto" padding="around-small" class="custom-box">
+                     <lightning:button label="{!account.Name}" variant="base"  onclick="{!c.AcctButton}" value="{!account.Name}"/>
+                </lightning:layoutItem>
+                <br/>
+           </aura:iteration>  
+    </lightning:layout>
+    
+    
+    
+    
+    
+    
+    
+      
+    
+   
+    
+    
+    
+    
+    <!--Pop up Window Code Url="https://www.lightningdesignsystem.com/components/modals/" -->
+    <aura:if isTrue="{!v.popupdisplay}">
+ 
+         <div>
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header">
+                            
+                            <c:Popup_header/>
+                                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick="{!c.hide}">
+                                <lightning:icon iconName="utility:close" size="small" variant="neutral"/>
+                                <span class="slds-assistive-text">Close</span>
+                                </button>
+                        </header>
+                       
+                        <div class="slds-modal__content slds-p-around_medium alignLeft" id="modal-content-id-1">
+                            	
+                                <!-- Passing Values to Child Cmp-->
+                            	<!-- Passing Both Opp list and Contact list to Child cmp -->
+                                 <c:Account_list_tabs_screen ConList="{!v.ConList}" OppList="{!v.OppList}" />
+                        </div>
+                        <footer class="slds-modal__footer">
+                                <lightning:button label="Back"
+                                        variant="brand" class="slds-m-top--medium"
+                                        onclick="{!c.hide}"/>
+                        </footer>
+                    </div>
+                </section>
+  				<div class="slds-backdrop slds-backdrop_open"></div>
+		</div>   
+    </aura:if>
+    
+    
+    
+    
+   
+</aura:component>

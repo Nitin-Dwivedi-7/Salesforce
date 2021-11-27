@@ -1,0 +1,56 @@
+<aura:component >
+	<!-- Attributes-->
+    <aura:attribute name="OppList" type="Opportunity[]"/>
+    
+
+
+    
+    <!-- Display -->
+    <!-- Checking List is Empty or not -->
+    <aura:if isTrue="{!not(empty(v.OppList))}"> 
+             <aura:iteration items="{!v.OppList}" var="OPP">
+                       
+                 
+                  <lightning:card>
+                        <aura:set attribute="title">
+                             
+                            
+                                    <!-- Name Field-->
+                                    <!-- Checking Field is Empty or not  -->
+                                    <aura:if isTrue="{!not(empty(OPP.Name))}">
+                                         Name: <ui:outputText value="{!OPP.Name}"/><br/>
+                                     <aura:set attribute="else">
+                                         Name : <b>No Data available</b><br/>
+                                     </aura:set>   
+                                    </aura:if>
+                                    
+                                    
+                                    <!-- Amount Field-->
+                                    <aura:if isTrue="{!not(empty(OPP.Amount))}">
+                                         Amount : <ui:outputNumber value="{!OPP.Amount}"/><br/>
+                                     <aura:set attribute="else">
+                                         Amount : <b>No Data available</b><br/>
+                                     </aura:set>   
+                                    </aura:if>
+                                    
+                                    
+                                    <!-- StageName Field-->
+                                    <aura:if isTrue="{!not(empty(OPP.StageName))}">
+                                         Stage Name : <ui:outputText  value="{!OPP.StageName}" /><br/>
+                                     <aura:set attribute="else">
+                                         Stage Name : <b>No Data available</b><br/>
+                                     </aura:set>   
+                                    </aura:if>
+                        
+                        </aura:set>
+                   </lightning:card>
+                 
+            </aura:iteration>
+            <aura:set attribute="else">
+                                    
+                 <!-- List Empty Component-->
+                <c:Account_ErrorCmp text="Opportunity"/>
+                
+            </aura:set>
+    </aura:if>	
+</aura:component>

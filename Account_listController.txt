@@ -1,0 +1,52 @@
+({
+	doinit : function(component, event, helper) {
+		//alert("Call success 1");
+        
+        var getAccountsAction = component.get("c.getAccounts");
+        getAccountsAction.setCallback(this,function(ReturnValue){
+            //alert("Inside function");
+           
+            component.set("v.Account_list",ReturnValue.getReturnValue());
+          //  console.log(component.get("v.Account_list"));
+          //  alert("Inside done");
+            
+        });    
+        $A.enqueueAction(getAccountsAction);
+       // alert("done"); 
+       
+        
+          
+	},
+    
+    
+    AcctButton : function(component, event, helper) {
+        let buttonClicked = event.getSource();
+        //alert("label = "+buttonClicked.get("v.label")+" value= "+buttonClicked.get("v.value"));
+       // alert(typeof(buttonClicked.get("v.value")))
+        var getContactOnAccountIdMethod = component.get("c.getContactOnAccountId");
+        getContactOnAccountIdMethod.setParams({"Name":buttonClicked.get("v.value")});
+        getContactOnAccountIdMethod.setCallback(this,function(res){
+            component.set("v.ConList",res.getReturnValue());
+        });
+        $A.enqueueAction(getContactOnAccountIdMethod);
+        
+       var getOpportunityOnAccountIdMethod = component.get("c.getOpportunityOnAccountId");
+        getOpportunityOnAccountIdMethod.setParams({"Name":buttonClicked.get("v.value")});
+        getOpportunityOnAccountIdMethod.setCallback(this,function(res){
+            component.set("v.OppList",res.getReturnValue());
+        });
+        $A.enqueueAction(getOpportunityOnAccountIdMethod);
+       // alert(buttonClicked.get("v.value"));
+        component.set("v.popupdisplay",true);
+        
+        
+        
+    },
+    
+    
+   
+    hide : function(component, event, helper){
+         component.set("v.popupdisplay",false);
+    }
+    
+})

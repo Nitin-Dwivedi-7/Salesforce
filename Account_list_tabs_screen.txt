@@ -1,0 +1,30 @@
+
+
+<aura:component controller="AccountListControllerClass" >
+    <!-- Attributes-->
+    <aura:attribute name="OppList" type="Opportunity[]"/>
+    <aura:attribute name="ConList" type="Contact[]"/>
+    
+    
+    
+  	 <!-- Tabs Code -->
+	 <lightning:tabset selectedTabId="two">
+         
+        <lightning:tab  label="Opportunity"  >
+            
+            <!-- Opportunity Tab Component Start-->
+            <!-- Passing OppList in the CMP -->
+            <c:Account_opportunity_list OppList="{!v.OppList}" /> 
+            
+        </lightning:tab>
+        <lightning:tab  label="Contact" >
+            
+            <!-- Contact Tab Component Start-->
+            <!-- Passing ConList in the CMP -->
+            <c:Account_contact_list ConList="{!v.ConList}"/>
+            
+        </lightning:tab>
+        
+    </lightning:tabset>
+  
+</aura:component>

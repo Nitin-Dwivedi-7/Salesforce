@@ -1,0 +1,9 @@
+.THIS {
+   
+     background: Red;
+    border-radius: 15px;
+    
+}
+.THIS.text{
+    font-size:50px;
+}

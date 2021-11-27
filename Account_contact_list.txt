@@ -1,0 +1,52 @@
+<aura:component >
+	<!-- Attributes-->
+        <aura:attribute name="ConList" type="Contact[]"/>
+       
+    	
+    
+   	<!-- Display -->
+    <!-- Checking List is Empty or not -->
+    <aura:if isTrue="{!not(empty(v.ConList))}"> 
+                <aura:iteration items="{!v.ConList}" var="contact">
+               
+                     <lightning:card>
+                        <aura:set attribute="title">
+                            <!-- Name Field-->
+                            <!-- Checking Field is Empty or not  -->
+                            <aura:if isTrue="{!not(empty(contact.Name))}">
+                                 Name: <ui:outputText value="{!contact.Name}"/><br/>
+                             <aura:set attribute="else">
+                                 Name : <b>No Data available</b><br/>
+                             </aura:set>   
+                            </aura:if>
+
+                            
+                            <!-- MobilePhone Field-->
+                             <aura:if isTrue="{!not(empty(contact.MobilePhone))}">
+                                 Mobile Number : <ui:outputNumber value="{!contact.MobilePhone}"/><br/>
+                             <aura:set attribute="else">
+                                 Mobile Number : <b>No Data available</b><br/>
+                             </aura:set>   
+                            </aura:if>
+                            
+                            
+                            <!-- Email Field-->
+                             <aura:if isTrue="{!not(empty(contact.Email))}">
+                                 Email : <ui:outputEmail aura:id="oEmail" value="{!contact.Email}" />
+                             <aura:set attribute="else">
+                                 Email : <b>No Data available</b><br/>
+                             </aura:set>   
+                            </aura:if>
+                    
+                        </aura:set>
+                    </lightning:card>
+                 
+        
+           		</aura:iteration>
+                <aura:set attribute="else">
+                    
+                    	<!-- List Empty Component-->
+                          <c:Account_ErrorCmp text="Contact"/>
+                </aura:set>
+    </aura:if>	
+</aura:component>

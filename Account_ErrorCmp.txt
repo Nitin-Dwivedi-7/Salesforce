@@ -1,0 +1,16 @@
+<aura:component >
+    <aura:attribute name="text" type="String"/>
+
+    <div class="c-container">
+
+        <lightning:layout >
+            <lightning:layoutItem padding="around-small">
+                <lightning:icon iconName="utility:error" alternativeText="Error!"  title="no variant" />
+            </lightning:layoutItem>
+            <lightning:layoutItem padding="around-small">
+                <h1 style="font-size:20px">{!v.text} is Empty No Data to Show !</h1>
+            </lightning:layoutItem>
+        </lightning:layout>
+    
+    </div>
+</aura:component>

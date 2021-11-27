@@ -1,0 +1,7 @@
+<aura:application extends="force:slds" >
+  
+    <c:Account_list_header/>
+    <br/><br/><br/>
+    <c:Account_list/>
+   
+</aura:application>
