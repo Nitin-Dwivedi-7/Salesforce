@@ -1,0 +1,57 @@
+<template>
+    <lightning-card title="GET LOCATION">
+        <lightning-record-edit-form
+        object-api-name={ObjectApiName}
+        onsubmit={handleSubmit}
+        record-id={recordId}
+        >
+        <lightning-messages></lightning-messages>
+            <lightning-layout vertical-align="center" class="x-large">
+                <lightning-layout-item flexibility="auto" padding="around-small">
+                  
+                        <lightning-combobox
+                        name="typeOfAddress"
+                        label="Type"
+                        value={value}
+                        placeholder="Select type"
+                        options={options}
+                        onchange={handlePickListChange} 
+                        required="true"></lightning-combobox>
+                  
+                </lightning-layout-item>
+               
+                <template if:true={EnterAddressSelect}>
+                    <lightning-layout-item flexibility="auto" padding="around-small">
+                        <lightning-input-field field-name={City} value={CityValue}></lightning-input-field>
+                    </lightning-layout-item>
+                    <lightning-layout-item flexibility="auto" padding="around-small">
+                        <lightning-input-field field-name={State}></lightning-input-field>
+                    </lightning-layout-item> 
+                </template>
+                <template if:true={EnterCordinateSelected}>
+                    <lightning-layout-item flexibility="auto" padding="around-small">
+                        <lightning-input-field field-name={latitude}></lightning-input-field>
+                    </lightning-layout-item>
+                    <lightning-layout-item flexibility="auto" padding="around-small">
+                        <lightning-input-field field-name={longitude}></lightning-input-field>
+                    </lightning-layout-item> 
+                </template>
+                <template if:true={ShowCombined}>
+                    <lightning-input-field field-name={CombinedFil} readonly="true">
+
+                    </lightning-input-field>
+                </template>
+            </lightning-layout>
+            <template if:true={ShowButtons}>
+                <lightning-layout vertical-align="center" class="x-large" style="margin-left: 40%;">
+                    <lightning-layout-item >
+                        <lightning-button label="Submit" type="submit" variant="success"></lightning-button>
+                    </lightning-layout-item>
+                    <lightning-layout-item >
+                        <lightning-button label="Cancel" type="cancel" variant="destructive"></lightning-button>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </template>
+        </lightning-record-edit-form>
+    </lightning-card>
+</template>
